@@ -1,0 +1,3 @@
+displayName = Erky's SSC
+author = Erky
+version = 1.0

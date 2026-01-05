@@ -1,0 +1,8 @@
+# folders to ignore
+/.vs
+/.vscode
+/bin
+/obj
+
+# files
+*.user
