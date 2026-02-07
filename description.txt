@@ -1,18 +1,22 @@
-Erky's SSC (Server Sided Characters)
+﻿﻿[c/FFFF00:Erky's SSC (Server Sided Characters)]
 
-This mod will create a new character when you first join a server with this mod enabled.
-The player files are saved when you save & exit and in periodic intervals.
-The player files are then re-loaded from the server when you re-join.
+[c/00FF88:How to use]
+Start by joining or creating a server with this mod enabled. When you connect, the server creates a new server-side character for you. Your character’s name and appearance are copied, and your character only contains the starting items and stats defined by the server. 
+From that point on, your progress is saved and loaded exclusively by the server.
 
-This mod works by uploading local player's files to the server's machine and binding it to the world name and the local player's steam ID
-Server files are stored on server's machine, under ..tModLoader/ErkySSC/<WorldName>/<YourSteamID>/
-
-You can customize start items, mana and health in the config.
-
+[c/00BFFF:Features]
 Features:
-- SSC
-- Allow/disallow client sided mods from the server
-- Display chat message when a boss summon is used
-- Ban items from the server
+- Fully server-sided characters (SSC)
+- Control which client-side mods are allowed
+- Ban items on the server
+- Chat messages when boss summons are used
+All features are configurable.
 
-Everything is configurable in the config.
+[c/00BFFF:How it works]
+Character data is saved in regular intervals and on save & exit like usual
+On rejoin, the character is loaded from the server
+Characters are bound per world and per player’s SteamID
+All character data is stored on the server.
+Server-side character files are stored at: tModLoader/ErkySSC/<WorldName>/<SteamID>/
+
+

@@ -1,0 +1,117 @@
+Mods: {
+	ErkySSC: {
+		Configs: {
+			ServerConfig: {
+				DisplayName: 服务器配置
+
+				StartItems: {
+					Label: 初始物品
+					Tooltip: 当新角色第一次加入时持有的物品，默认为铜质工具
+				}
+
+				StartLife: {
+					Label: "[i:LifeCrystal] 初始生命值"
+					Tooltip: 新加入角色的初始最大生命值，默认为100
+				}
+
+				StartMana: {
+					Label: "[i:ManaCrystal] 初始法力值"
+					Tooltip: 新加入角色的初始最大法力值，默认为20
+				}
+
+				Headers: {
+					Options: 选项
+					StartOptions: 初始选项
+					ClientSidedMods: 客户端模组
+					BannedItems: 禁用物品
+					// Debug: Debug Header
+				}
+
+				IsSSCEnabled: {
+					Label: 是否启用本模组
+					Tooltip: 启用/禁用本模组的全部功能，推荐保持此项启用
+				}
+
+				AllowClientMods: {
+					Label: 允许客户端模组
+					Tooltip: 是否允许加入的角色使用客户端模组
+				}
+
+				AllowedClientMods: {
+					Label: 允许的客户端模组
+					Tooltip: 输入被允许的模组，请输入对应模组的内部名，可以在模组文件夹找到
+				}
+
+				BannedItems: {
+					Label: 禁用的物品
+					Tooltip: 使物品不能被世界中的玩家使用或拾取
+				}
+
+				ShowDebugMessages: {
+					Label: "[i:Goggles] 显示Debug信息"
+					Tooltip: 在聊天框中显示调试信息，对开发者很有用，可用于排查Bug等问题
+				}
+			}
+
+			ClientConfig: {
+				DisplayName: 客户端配置
+
+				ShowWhoSummonedBossMessage: {
+					Label: "[i:SlimeCrown] 显示谁召唤了Boss"
+					Tooltip: 在聊天框发送一条消息，显示谁使用了Boss召唤物
+				}
+
+				Headers: {
+					ClientOptions: 客户端选项
+					Debug: "[i:Goggles] 调试"
+				}
+
+				ShowStatsMessageWhenEnteringWorld: {
+					Label: "[i:PDA] 进入世界时显示数值信息"
+					Tooltip: 进入世界时发送一条消息，显示玩家的数值信息（仅你可见）
+				}
+
+				ShowPlayerSaveMessage: {
+					Label: "[i:Safe] 显示玩家保存信息"
+					Tooltip: 当服务端玩家数据被保存，发送一条提示信息（仅你可见）
+				}
+
+				ShowDebugMessages: {
+					Label: "[i:Goggles] 显示Debug信息"
+					Tooltip: 在聊天框中显示调试信息，对开发者很有用，可用于排查Bug等问题
+				}
+			}
+		}
+
+		Commands: {
+			SSCHelp: {
+				Description: 显示本模组的相关信息
+				NoActivePlayer: 暂无活跃玩家数据
+				Header: 服务端玩家数据
+				Bullet_ServerSaved: � 您的角色被保存在服务器上，而非您的电脑本地
+				Bullet_SharedWorld: � 您角色的物品、进程和数据被此世界共享
+				Bullet_Persistence: � 退出或更换一台电脑不会重置你的角色
+				Bullet_Playtime: � 此世界中的游戏时间：{0}
+				Bullet_ServerPath: � 服务端文件被储存至服务器中，路径为tModLoader/ErkySSC/<世界名称>/<Steam名称>/<玩家名称>.plr
+			}
+
+			SSCSave: {
+				Description: 手动保存服务端角色信息
+				NotEnabled: 本服务器没有启用服务端角色信息
+				MultiplayerOnly: 这条指令只能在多人游戏中使用
+				Success: 您的服务端角色信息已被保存
+			}
+
+			SSCStats: {
+				Description: 显示您在本世界中的服务端角色信息
+				NoActivePlayer: 暂无活跃玩家数据
+				Header: 角色数据 — {0}
+				Difficulty: 难度：{0}
+				Playtime: 游戏时间：{0}
+				MaxStats: 最大生命：{0} | 最大法力：{1} | 防御：{2}
+				Inventory: 背包物品：{0}/50 | 饰品：{1}
+				Deaths: PvE死亡数：{0} | PvP死亡数：{1}
+			}
+		}
+	}
+}

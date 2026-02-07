@@ -1,0 +1,73 @@
+using ErkySSC.Core.Debug;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+
+namespace ErkySSC.Common.SSC;
+
+/// <summary>
+/// Saves and restores player positions per world, per character.
+/// Positions are stored in the tplr (player mod data) file alongside other SSC data.
+/// When a player joins a world with SSC enabled, they are teleported to their last position in that world.
+/// </summary>
+[Autoload(Side = ModSide.Both)]
+public class PlayerPositionSystem : ModSystem
+{
+    /// <summary>
+    /// Saves the current player's position to their SSC data.
+    /// Called when the player saves their character.
+    /// </summary>
+    public static void SavePlayerPosition(Player player, TagCompound sscData)
+    {
+        if (player == null || sscData == null)
+            return;
+
+        // Store position in the SSC data tag
+        sscData["posX"] = player.position.X;
+        sscData["posY"] = player.position.Y;
+        sscData["worldId"] = Main.worldID;
+        sscData["worldName"] = Main.worldName;
+    }
+
+    /// <summary>
+    /// Loads and applies the player's saved position from SSC data.
+    /// Called after the player spawns in the world.
+    /// Returns true if position was restored, false if player spawned at world spawn point.
+    /// </summary>
+    public static bool TryLoadPlayerPosition(Player player, TagCompound sscData)
+    {
+        if (player == null || sscData == null)
+            return false;
+
+        // Check if position data exists for this world
+        if (!sscData.ContainsKey("posX") || !sscData.ContainsKey("posY"))
+            return false;
+
+        if (!sscData.ContainsKey("worldId") || !sscData.ContainsKey("worldName"))
+            return false;
+
+        // Verify the saved position is from the same world
+        int savedWorldId = sscData.GetInt("worldId");
+        string savedWorldName = sscData.GetString("worldName");
+
+        if (savedWorldId != Main.worldID || savedWorldName != Main.worldName)
+        {
+            // Position is from a different world, don't apply it
+            Log.Debug($"SSC position mismatch: saved={savedWorldName}({savedWorldId}), current={Main.worldName}({Main.worldID})");
+            return false;
+        }
+
+        float posX = sscData.GetFloat("posX");
+        float posY = sscData.GetFloat("posY");
+
+        // Clamp position to valid world bounds (with some margin for safety)
+        posX = Math.Max(0, Math.Min(posX, Main.maxTilesX * 16 - player.width));
+        posY = Math.Max(0, Math.Min(posY, Main.maxTilesY * 16 - player.height));
+
+        player.position = new Vector2(posX, posY);
+
+        return true;
+    }
+}

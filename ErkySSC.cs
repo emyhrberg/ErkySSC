@@ -1,5 +1,5 @@
-using ErkySSC.Core;
-using ErkySSC.Core.SSC;
+using ErkySSC.Common;
+using ErkySSC.Common.SSC;
 using System.IO;
 using Terraria.ModLoader;
 
@@ -24,13 +24,13 @@ public class ErkySSC : Mod
         switch (msg)
         {
             case PacketType.ClientJoin:
-                SSCMainSystem.ClientJoin(reader, whoAmI);
+                SSC.ClientJoin(reader, whoAmI);
                 break;
             case PacketType.LoadPlayer:
-                SSCMainSystem.LoadPlayer(reader);
+                SSC.LoadPlayer(reader);
                 break;
             case PacketType.SavePlayer:
-                SSCMainSystem.SavePlayer(reader);
+                SSC.SavePlayer(reader);
                 break;
             case PacketType.ClientModCheck:
                 ClientModHandler.HandlePacket(reader, whoAmI);

@@ -1,0 +1,112 @@
+Mods: {
+	ErkySSC: {
+		Configs: {
+			ServerConfig: {
+				DisplayName: Server Config
+
+				StartItems: {
+					Label: Start Items
+					Tooltip: The items you start with when a new character joins. Default to copper tools.
+				}
+
+				StartLife: {
+					Label: "[i:LifeCrystal] Starting Health"
+					Tooltip: The starting max health of a new character. Default to 100
+				}
+
+				StartMana: {
+					Label: "[i:ManaCrystal] Starting Mana"
+					Tooltip: The starting max mana of a new character. Default to 20
+				}
+
+				Headers: {
+					Options: Options
+					StartOptions: Start Options
+					ClientSidedMods: Client Sided Mods
+					BannedItems: Banned Items
+					Debug: Debug
+				}
+
+				IsSSCEnabled: {
+					Label: Is SSC Enabled
+					Tooltip: Toggle the entire feature. Recommend to keep this on.
+				}
+
+				AllowClientMods: {
+					Label: Allow Client Mods
+					Tooltip: Whether to allow joining players to use client-sided mods.
+				}
+
+				AllowedClientMods: {
+					Label: Allowed Client Mods
+					Tooltip: Enter which mods are allowed. Entry the mod's internal name, findable from the Mods folder.
+				}
+
+				BannedItems: {
+					Label: Banned Items
+					Tooltip: Makes items be unusable and unpickable for players in the world
+				}
+
+				ShowDebugMessages: {
+					Label: "[i:Goggles] Show Debug Messages"
+					Tooltip: Shows debug messages in the chat. Useful for developers, investigating bugs, etc.
+				}
+			}
+
+			ClientConfig: {
+				DisplayName: Client Config
+
+				ShowWhoSummonedBossMessage: {
+					Label: "[i:SlimeCrown] Show Who Summoned Boss Message"
+					Tooltip: Shows a message in the chat containing information about who used a boss summon.
+				}
+
+				Headers: {
+					ClientOptions: Client Options
+					Debug: "[i:Goggles] Debug"
+				}
+
+				ShowStatsMessageWhenEnteringWorld: {
+					Label: "[i:PDA] Show Stats Message When Entering World"
+					Tooltip: Shows a message containing player information only when entering the world (only shown to you).
+				}
+
+				ShowPlayerSaveMessage: {
+					Label: "[i:Safe] Show Player Save Message"
+					Tooltip: Shows a message when the server sided character is saved (only shown to you).
+				}
+			}
+		}
+
+		Commands: {
+			SSCHelp: {
+				Description: Shows useful information for using SSC.
+				NoActivePlayer: No active player data.
+				Header: Server-Side Characters (SSC)
+				Bullet_ServerSaved: � Your character is saved on the server, not on your PC.
+				Bullet_SharedWorld: � Your character's items, progress, and stats are shared on this world.
+				Bullet_Persistence: � Logging out or switching PCs will not reset your character.
+				Bullet_Playtime: � Playtime on this world: {0}
+				Bullet_ServerPath: � Server files are stored on server's machine, under tModLoader/ErkySSC/<WorldName>/<YourSteamID>/<YourPlayer>.plr
+			}
+
+			SSCSave: {
+				Description: Manually saves your SSC.
+				NotEnabled: SSC is not enabled on this server.
+				MultiplayerOnly: This command can only be used in multiplayer.
+				Success: Your SSC has been saved.
+			}
+
+			SSCStats: {
+				Description: Shows your SSC stats for this world.
+				NoActivePlayer: No active player data.
+				Header: Character Stats — {0}
+				Difficulty: Difficulty: {0}
+				Playtime: Playtime: {0}
+				MaxStats: Max Health: {0} | Max Mana: {1} | Defense: {2}
+				Inventory: Inventory: {0}/50 | Accessories: {1}
+				Deaths: PvE Deaths: {0} | PvP Deaths: {1}
+			}
+		}
+	}
+}

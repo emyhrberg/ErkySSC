@@ -1,0 +1,3 @@
+v1.2:
+- Added PPP (persistent player position) to save player position to .tplr file on disconnect and load on reconnect
+- Added so debug messages off by default in config
