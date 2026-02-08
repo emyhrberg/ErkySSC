@@ -5,14 +5,13 @@ Start by joining or creating a server with this mod enabled. When you connect, t
 From that point on, your progress is saved and loaded exclusively by the server.
 
 [c/00BFFF:Features]
-Features:
 - Fully server-sided characters (SSC)
 - Control which client-side mods are allowed
 - Ban items on the server
 - Chat messages when boss summons are used
 All features are configurable.
 
-[c/00BFFF:How it works]
+[c/00BBFF:How it works]
 Character data is saved in regular intervals and on save & exit like usual
 On rejoin, the character is loaded from the server
 Characters are bound per world and per player’s SteamID

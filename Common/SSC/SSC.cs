@@ -1,7 +1,6 @@
 ﻿using ErkySSC.Common.Commands;
 using ErkySSC.Core.Configs;
 using ErkySSC.Core.Debug;
-using Microsoft.Xna.Framework;
 using Steamworks;
 using System;
 using System.IO;
@@ -140,6 +139,10 @@ public class SSC : ModSystem
             };
 
             Player.LoadPlayerFromStream(fileData, data, ms.ToArray());
+
+            // Force hotbar locked
+            fileData.Player.hbLocked = true;
+
             fileData.MarkAsServerSide();
             fileData.SetAsActive();
 
@@ -205,6 +208,9 @@ public class SSC : ModSystem
         };
         ApplyAppearance(fileData.Player, appearance);
 
+        // Force hotbar locked
+        fileData.Player.hbLocked = true;
+
         // Apply config options
         StarterItems.ApplyStartItems(fileData.Player);
         StarterItems.ApplyStartLife(fileData.Player);
@@ -258,5 +264,3 @@ public class SSC : ModSystem
         }
     }
 }
-
-

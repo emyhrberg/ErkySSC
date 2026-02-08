@@ -36,6 +36,8 @@ public static class Log
     /// </summary>
     public static void Chat(object message, bool showTime = true, [CallerFilePath] string file = "")
     {
+        Debug($"[{file}] {message}");
+
         if (!ShouldSend())
             return;
 

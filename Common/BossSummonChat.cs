@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ErkySSC.Core.Configs;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Chat;
 using Terraria.ID;
@@ -14,12 +15,16 @@ internal class BossSummonChat : GlobalItem
 {
     public override void OnConsumeItem(Item item, Player player)
     {
-        if (Main.netMode == NetmodeID.SinglePlayer)
+        var config = ModContent.GetInstance<ClientConfig>();
+        if (!config.ShowWhoSummonedBossMessage)
             return;
+
+        //if (Main.netMode == NetmodeID.SinglePlayer)
+        //return;
 
         // Only run on server
         //if (Main.netMode != NetmodeID.Server)
-            //return;
+        //return;
 
         // Must be consumable
         if (!item.consumable)
@@ -92,6 +97,7 @@ internal class BossSummonChat : GlobalItem
 
     private static bool IsGenericBossSummon(Item item)
     {
+        return false;
         return item.consumable &&
                item.shoot > 0 &&
                ContentSamples.NpcsByNetId.TryGetValue(item.shoot, out var npc) &&

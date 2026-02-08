@@ -24,7 +24,7 @@ Mods: {
 					StartOptions: 初始选项
 					ClientSidedMods: 客户端模组
 					BannedItems: 禁用物品
-					// Debug: Debug Header
+					// Debug: Debug
 				}
 
 				IsSSCEnabled: {
@@ -74,11 +74,6 @@ Mods: {
 				ShowPlayerSaveMessage: {
 					Label: "[i:Safe] 显示玩家保存信息"
 					Tooltip: 当服务端玩家数据被保存，发送一条提示信息（仅你可见）
-				}
-
-				ShowDebugMessages: {
-					Label: "[i:Goggles] 显示Debug信息"
-					Tooltip: 在聊天框中显示调试信息，对开发者很有用，可用于排查Bug等问题
 				}
 			}
 		}
