@@ -8,7 +8,7 @@ From that point on, your progress is saved and loaded exclusively by the server.
 [h2] How it works [/h2]
 Character data is saved in regular intervals and on save & exit like usual
 On rejoin, the character is loaded from the server
-Characters are bound per world and per player’s SteamID
+Characters are bound per world and per player's SteamID
 All character data is stored on the server.
 Server-side character files are stored at: tModLoader/ErkySSC/<WorldName>/<SteamID>/
 

@@ -15,7 +15,7 @@ internal sealed class DebugMapScan : ModSystem
     public override void PostUpdateEverything()
     {
         // Only run once per x seconds.
-        const int delayInSeconds = 5;
+        const int delayInSeconds = 58;
         if (Main.GameUpdateCount % (60*delayInSeconds) != 0)
             return;
 

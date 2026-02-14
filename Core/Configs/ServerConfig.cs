@@ -58,13 +58,13 @@ public class ServerConfig : ModConfig
     [DefaultValue(20)]
     public int StartMana = 20;
     
-    [BackgroundColor(90, 40, 110)]
-    [DefaultValue(PlayerDifficultyMode.Softcore)]
-    public PlayerDifficultyMode StartDifficulty = PlayerDifficultyMode.Softcore;
+    //[BackgroundColor(90, 40, 110)]
+    //[DefaultValue(PlayerDifficultyMode.Softcore)]
+    //public PlayerDifficultyMode StartDifficulty = PlayerDifficultyMode.Softcore;
 
-    [BackgroundColor(90, 40, 110)]
-    [DefaultValue(PlayerNameMode.Default)]
-    public PlayerNameMode PlayerStartName = PlayerNameMode.Default;
+    //[BackgroundColor(90, 40, 110)]
+    //[DefaultValue(PlayerNameMode.Default)]
+    //public PlayerNameMode PlayerStartName = PlayerNameMode.Default;
 
     [Header("ClientSidedMods")]
     [BackgroundColor(30, 100, 40, 220)]
