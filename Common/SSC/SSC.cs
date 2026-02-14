@@ -2,7 +2,6 @@
 using ErkySSC.Core.Configs;
 using ErkySSC.Core.Debug;
 using Steamworks;
-using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -43,16 +42,9 @@ public class SSC : ModSystem
         p.Write(pLocal.name);
 
         // Appearance
-        p.Write(pLocal.skinVariant);
-        p.Write(pLocal.hair);
-        ColorReader.WriteColor(p, pLocal.skinColor);
-        ColorReader.WriteColor(p, pLocal.eyeColor);
-        ColorReader.WriteColor(p, pLocal.hairColor);
-        ColorReader.WriteColor(p, pLocal.shirtColor);
-        ColorReader.WriteColor(p, pLocal.underShirtColor);
-        ColorReader.WriteColor(p, pLocal.pantsColor);
-        ColorReader.WriteColor(p, pLocal.shoeColor);
+        PlayerAppearance.Capture(Main.LocalPlayer).Write(p);
 
+        // Send
         p.Send();
     }
 
@@ -60,24 +52,10 @@ public class SSC : ModSystem
     {
         if (Main.netMode == NetmodeID.Server)
         {
-            // Get data from client
+            // Receive data from client
             var steamId = reader.ReadString();
             var name = reader.ReadString();
-
-            PlayerAppearance appearance = new()
-            {
-                SkinVariant = reader.ReadInt32(),
-                Hair = reader.ReadInt32(),
-
-                SkinColor = ColorReader.ReadColor(reader),
-                EyeColor = ColorReader.ReadColor(reader),
-                HairColor = ColorReader.ReadColor(reader),
-
-                ShirtColor = ColorReader.ReadColor(reader),
-                UnderShirtColor = ColorReader.ReadColor(reader),
-                PantsColor = ColorReader.ReadColor(reader),
-                ShoeColor = ColorReader.ReadColor(reader)
-            };
+            PlayerAppearance appearance = PlayerAppearance.Read(reader);
 
             byte[] data;
             TagCompound root;
@@ -155,18 +133,20 @@ public class SSC : ModSystem
 
             // Try to restore player position from previous session in this world
             TagCompound sscData = null;
-            if (root.ContainsKey("PvPAdventureSSC"))
+            if (root.ContainsKey("PPP"))
             {
-                sscData = root.GetCompound("PvPAdventureSSC");
+                sscData = root.GetCompound("PPP");
             }
 
             bool positionRestored = PlayerPositionSystem.TryLoadPlayerPosition(fileData.Player, sscData);
 
             // Apply max life and mana again to ensure
-            if (fileData.Player.statLife != fileData.Player.statLifeMax)
-                fileData.Player.statLife = fileData.Player.statLifeMax;
-            if (fileData.Player.statMana != fileData.Player.statManaMax)
-                fileData.Player.statMana = fileData.Player.statManaMax;
+            //if (fileData.Player.statLife != fileData.Player.statLifeMax)
+            //    fileData.Player.statLife = fileData.Player.statLifeMax;
+            //if (fileData.Player.statMana != fileData.Player.statManaMax)
+            //    fileData.Player.statMana = fileData.Player.statManaMax;
+
+            MapLoadSystem.Request(delayTicks: 30);
 
             // Get world coordinates for logging
             int worldX = (int)fileData.Player.position.X / 16;
@@ -183,19 +163,14 @@ public class SSC : ModSystem
             var config = ModContent.GetInstance<ClientConfig>();
             if (config.ShowStatsMessageWhenEnteringWorld)
             {
-                Stats.PrintStats();
+                Stats.PrintFullStats();
             }
         }
     }
 
-    public static string FormatPlayTime(TimeSpan t)
-    {
-        int hours = (int)t.TotalHours;
-        return $"{hours:D2}:{t.Minutes:D2}:{t.Seconds:D2}";
-    }
-
     private static void CreateNewPlayer(string plrPath, string name, PlayerAppearance appearance)
     {
+
         // Create a brand new empty player on the server
         var fileData = new PlayerFileData(plrPath, cloudSave: false)
         {

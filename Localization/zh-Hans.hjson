@@ -51,6 +51,16 @@ Mods: {
 					Label: "[i:Goggles] 显示Debug信息"
 					Tooltip: 在聊天框中显示调试信息，对开发者很有用，可用于排查Bug等问题
 				}
+
+				StartDifficulty: {
+					// Label: Starting Difficulty
+					// Tooltip: The difficulty of the players who join
+				}
+
+				PlayerStartName: {
+					// Label: Starting Player Names
+					// Tooltip: ""
+				}
 			}
 
 			ClientConfig: {
@@ -64,6 +74,7 @@ Mods: {
 				Headers: {
 					ClientOptions: 客户端选项
 					Debug: "[i:Goggles] 调试"
+					// ChatMessages: "[i:ErkySSC/ChatConfigItem] Chat Messages"
 				}
 
 				ShowStatsMessageWhenEnteringWorld: {
@@ -74,6 +85,68 @@ Mods: {
 				ShowPlayerSaveMessage: {
 					Label: "[i:Safe] 显示玩家保存信息"
 					Tooltip: 当服务端玩家数据被保存，发送一条提示信息（仅你可见）
+				}
+
+				ShowDebugMessages: {
+					// Label: Debug Messages
+					/* Tooltip:
+						'''
+						Shows debug messages in chat with a timestamp and calling class. 
+						Recommended for developers and testers.
+						''' */
+				}
+			}
+
+			PlayerDifficultyMode: {
+				// Tooltip: ""
+
+				Softcore: {
+					// Label: Softcore
+					// Tooltip: ""
+				}
+
+				Mediumcore: {
+					// Label: Mediumcore
+					// Tooltip: ""
+				}
+
+				Hardcore: {
+					// Label: Hardcore
+					// Tooltip: ""
+				}
+
+				Journey: {
+					// Label: Journey
+					// Tooltip: ""
+				}
+			}
+
+			PlayerNameMode: {
+				// Tooltip: ""
+
+				Default: {
+					// Label: Default
+					// Tooltip: ""
+				}
+
+				Steam: {
+					// Label: Steam
+					// Tooltip: ""
+				}
+
+				Discord: {
+					// Label: Discord
+					// Tooltip: ""
+				}
+
+				Numbered: {
+					// Label: Numbered
+					// Tooltip: ""
+				}
+
+				Random: {
+					// Label: Random
+					// Tooltip: ""
 				}
 			}
 		}
@@ -102,10 +175,16 @@ Mods: {
 				NoActivePlayer: 暂无活跃玩家数据
 				Header: 角色数据 — {0}
 				Difficulty: 难度：{0}
-				Playtime: 游戏时间：{0}
 				MaxStats: 最大生命：{0} | 最大法力：{1} | 防御：{2}
 				Inventory: 背包物品：{0}/50 | 饰品：{1}
 				Deaths: PvE死亡数：{0} | PvP死亡数：{1}
+			}
+		}
+
+		Items: {
+			ChatConfigItem: {
+				// DisplayName: Chat Config Item
+				// Tooltip: ""
 			}
 		}
 	}

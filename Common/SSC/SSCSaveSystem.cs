@@ -16,13 +16,10 @@ namespace ErkySSC.Common.SSC;
 /// Ensures that data is handled by the server rather than saved locally.
 /// Intercepts player file save events to redirect saving to the server.
 [Autoload(Side = ModSide.Client)]
-internal class SaveSystem : ModSystem
+internal class SSCSaveSystem : ModSystem
 {
     public override void Load()
     {
-        if (!SSC.IsEnabled)
-            return;
-
         On_Player.InternalSavePlayerFile += OverrideSavePlayerFile;
     }
 
@@ -46,11 +43,16 @@ internal class SaveSystem : ModSystem
     // Do not save SSC player files locally; send to server instead.
     private void OverrideSavePlayerFile(On_Player.orig_InternalSavePlayerFile orig, PlayerFileData fileData)
     {
+        if (!SSC.IsEnabled)
+        {
+            orig(fileData);
+            return;
+        }
+
         if (Main.netMode == NetmodeID.MultiplayerClient &&
             fileData.ServerSideCharacter && fileData.Path.EndsWith("SSC"))
         {
             SendPacketToSavePlayerFile();
-
             return;
         }
 
@@ -75,8 +77,7 @@ internal class SaveSystem : ModSystem
 
             // Save player position for this world
             PlayerPositionSystem.SavePlayerPosition(fileData.Player, sscTag);
-
-            tplr["PvPAdventureSSC"] = sscTag;
+            tplr["PPP"] = sscTag;
 
             // Send packet
             var packet = Mod.GetPacket();

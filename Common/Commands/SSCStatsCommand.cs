@@ -18,13 +18,13 @@ public class SSCStatsCommand : ModCommand
 
     public override void Action(CommandCaller caller, string input, string[] args)
     {
-        Stats.PrintStats();
+        Stats.PrintFullStats();
     }
 }
 
 public static class Stats
 {
-    public static void PrintStats()
+    public static void PrintMinimalStats()
     {
         var fileData = Main.ActivePlayerFileData;
         if (fileData == null)
@@ -35,33 +35,50 @@ public static class Stats
 
         Player p = Main.LocalPlayer;
 
-        Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Header", p.name), Color.MediumPurple);
-        Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Difficulty", GetDifficultyName(p)));
-        Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Playtime", SSC.SSC.FormatPlayTime(fileData.GetPlayTime())));
+        Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Header", p.name, FormatPlayTime(fileData.GetPlayTime())));
+    }
+
+    public static void PrintFullStats()
+    {
+        var fileData = Main.ActivePlayerFileData;
+        if (fileData == null)
+        {
+            Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.NoActivePlayer"), Color.Red);
+            return;
+        }
+
+        Player p = Main.LocalPlayer;
+
+        Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Header", p.name, FormatPlayTime(fileData.GetPlayTime())));
         Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.MaxStats", p.statLifeMax, p.statManaMax, p.statDefense));
-        Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Inventory", p.inventory.Count(i => !i.IsAir), GetAccessoryUsage(p)));
+        Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Inventory", GetInventoryUsage(p), GetAccessoryUsage(p)));
         Print(Language.GetTextValue("Mods.ErkySSC.Commands.SSCStats.Deaths", p.numberOfDeathsPVE, p.numberOfDeathsPVP));
     }
 
+    #region Helpers
+    public static string FormatPlayTime(TimeSpan t)
+    {
+        int hours = (int)t.TotalHours;
+        return $"{hours:D2}:{t.Minutes:D2}:{t.Seconds:D2}";
+    }
+
     private static void Print(string text)
-        => Main.NewText($"• {text}", Color.LightGray);
+    {
+        Main.NewText(text, Color.LightGreen);
+    }
+
+    private static string GetInventoryUsage(Player p)
+    {
+        int usedInventoryItems = p.inventory.Count(i => !i.IsAir);
+
+        return usedInventoryItems.ToString() + "/" + 50;
+    }
 
     private static string GetAccessoryUsage(Player p)
     {
         int max = p.extraAccessory ? 7 : 6;
         int used = Enumerable.Range(3, max).Count(i => !p.armor[i].IsAir);
-        return $"{used} / {max}";
+        return $"{used}/{max}";
     }
-
-    private static string GetDifficultyName(Player player)
-    {
-        return player.difficulty switch
-        {
-            PlayerDifficultyID.SoftCore => "Softcore",
-            PlayerDifficultyID.MediumCore => "Mediumcore",
-            PlayerDifficultyID.Hardcore => "Hardcore",
-            PlayerDifficultyID.Creative => "Journey",
-            _ => "Unknown"
-        };
-    }
+    #endregion
 }

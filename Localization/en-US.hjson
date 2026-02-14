@@ -5,7 +5,7 @@ Mods: {
 				DisplayName: Server Config
 
 				StartItems: {
-					Label: Start Items
+					Label: Starting Items
 					Tooltip: The items you start with when a new character joins. Default to copper tools.
 				}
 
@@ -51,29 +51,102 @@ Mods: {
 					Label: "[i:Goggles] Show Debug Messages"
 					Tooltip: Shows debug messages in the chat. Useful for developers, investigating bugs, etc.
 				}
+
+				StartDifficulty: {
+					Label: Starting Difficulty
+					Tooltip: The difficulty of the players who join
+				}
+
+				PlayerStartName: {
+					Label: Starting Player Names
+					Tooltip: ""
+				}
 			}
 
 			ClientConfig: {
 				DisplayName: Client Config
 
 				ShowWhoSummonedBossMessage: {
-					Label: "[i:SlimeCrown] Show Who Summoned Boss Message"
-					Tooltip: Shows a message in the chat containing information about who used a boss summon.
+					Label: "[i:SlimeCrown] Boss Summon"
+					Tooltip: Shows when anyone uses a boss summon item
 				}
 
 				Headers: {
 					ClientOptions: Client Options
 					Debug: "[i:Goggles] Debug"
+					ChatMessages: "[i:ErkySSC/ChatConfigItem] Chat Messages"
 				}
 
 				ShowStatsMessageWhenEnteringWorld: {
-					Label: "[i:PDA] Show Stats Message When Entering World"
-					Tooltip: Shows a message containing player information only when entering the world (only shown to you).
+					Label: Welcome Message
+					Tooltip: Shows player information when entering the world
 				}
 
 				ShowPlayerSaveMessage: {
-					Label: "[i:Safe] Show Player Save Message"
-					Tooltip: Shows a message when the server sided character is saved (only shown to you).
+					Label: Save Messages
+					Tooltip: Shows when the server saves your character
+				}
+
+				ShowDebugMessages: {
+					Label: Debug Messages
+					Tooltip:
+						'''
+						Shows debug messages in chat with a timestamp and calling class. 
+						Recommended for developers and testers.
+						'''
+				}
+			}
+
+			PlayerDifficultyMode: {
+				Tooltip: ""
+
+				Softcore: {
+					Label: Softcore
+					Tooltip: ""
+				}
+
+				Mediumcore: {
+					Label: Mediumcore
+					Tooltip: ""
+				}
+
+				Hardcore: {
+					Label: Hardcore
+					Tooltip: ""
+				}
+
+				Journey: {
+					Label: Journey
+					Tooltip: ""
+				}
+			}
+
+			PlayerNameMode: {
+				Tooltip: ""
+
+				Default: {
+					Label: Default
+					Tooltip: ""
+				}
+
+				Steam: {
+					Label: Steam
+					Tooltip: ""
+				}
+
+				Discord: {
+					Label: Discord
+					Tooltip: ""
+				}
+
+				Numbered: {
+					Label: Numbered
+					Tooltip: ""
+				}
+
+				Random: {
+					Label: Random
+					Tooltip: ""
 				}
 			}
 		}
@@ -83,9 +156,9 @@ Mods: {
 				Description: Shows useful information for using SSC.
 				NoActivePlayer: No active player data.
 				Header: Server-Side Characters (SSC)
-				Bullet_ServerSaved: � Your character is saved on the server, not on your PC.
-				Bullet_SharedWorld: � Your character's items, progress, and stats are shared on this world.
-				Bullet_Persistence: � Logging out or switching PCs will not reset your character.
+				Bullet_ServerSaved: Your character is saved on the server, not on your PC.
+				Bullet_SharedWorld: Your character's items, progress, and stats are shared on this world.
+				Bullet_Persistence: Logging out or switching PCs will not reset your character.
 				Bullet_Playtime: � Playtime on this world: {0}
 				Bullet_ServerPath: � Server files are stored on server's machine, under tModLoader/ErkySSC/<WorldName>/<YourSteamID>/<YourPlayer>.plr
 			}
@@ -94,18 +167,24 @@ Mods: {
 				Description: Manually saves your SSC.
 				NotEnabled: SSC is not enabled on this server.
 				MultiplayerOnly: This command can only be used in multiplayer.
-				Success: Your SSC has been saved.
+				Success: "[ErkySSC]: {0} has been saved to the server."
 			}
 
 			SSCStats: {
 				Description: Shows your SSC stats for this world.
 				NoActivePlayer: No active player data.
-				Header: Character Stats — {0}
-				Difficulty: Difficulty: {0}
-				Playtime: Playtime: {0}
-				MaxStats: Max Health: {0} | Max Mana: {1} | Defense: {2}
-				Inventory: Inventory: {0}/50 | Accessories: {1}
-				Deaths: PvE Deaths: {0} | PvP Deaths: {1}
+				Header: Character Stats — {0} | Playtime: {1}
+				Difficulty: • Difficulty: {0}
+				MaxStats: • Health: {0} | Mana: {1}
+				Inventory: • Inventory: {0} | Accessories: {1}
+				Deaths: • PvE Deaths: {0} | PvP Deaths: {1}
+			}
+		}
+
+		Items: {
+			ChatConfigItem: {
+				DisplayName: Chat Config Item
+				Tooltip: ""
 			}
 		}
 	}

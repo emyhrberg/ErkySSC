@@ -10,7 +10,7 @@ public class ClientConfig : ModConfig
 {
     public override ConfigScope Mode => ConfigScope.ClientSide;
 
-    [Header("ClientOptions")]
+    [Header("ChatMessages")]
     [BackgroundColor(30, 40, 110)]
     [DefaultValue(true)]
     public bool ShowWhoSummonedBossMessage;
@@ -22,4 +22,8 @@ public class ClientConfig : ModConfig
     [BackgroundColor(30, 40, 110)]
     [DefaultValue(true)]
     public bool ShowPlayerSaveMessage;
+
+    [BackgroundColor(30, 40, 110)]
+    [DefaultValue(false)]
+    public bool ShowDebugMessages;
 }

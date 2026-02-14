@@ -23,11 +23,11 @@ public class SSCHelp : ModCommand
 
         var playTime = fileData.GetPlayTime();
 
-        Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Header"), Color.MediumPurple);
+        Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Header"), Color.LightGreen);
         Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Bullet_ServerSaved"), Color.LightGray);
         Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Bullet_SharedWorld"), Color.LightGray);
         Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Bullet_Persistence"), Color.LightGray);
-        Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Bullet_Playtime", SSC.SSC.FormatPlayTime(playTime)), Color.LightGray);
+        Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Bullet_Playtime", Stats.FormatPlayTime(playTime)), Color.LightGray);
         Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCHelp.Bullet_ServerPath"), Color.LightGray);
     }
 }

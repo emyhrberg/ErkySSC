@@ -1,8 +1,5 @@
-﻿using Steamworks;
-using System.IO;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria.IO;
 using Terraria.ModLoader;
 
 namespace ErkySSC.Common.SSC;

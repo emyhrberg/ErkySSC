@@ -11,12 +11,28 @@ public class ServerConfig : ModConfig
 {
     public override ConfigScope Mode => ConfigScope.ServerSide;
 
+    public enum PlayerDifficultyMode
+    {
+        Softcore,
+        Mediumcore,
+        Hardcore,
+        Journey
+    }
+
+    public enum PlayerNameMode
+    {
+        Default,
+        Steam,
+        Discord,
+        Numbered,
+        Random
+    }
+
     [Header("Options")]
     [BackgroundColor(60, 60, 150)]
     [DefaultValue(true)]
     public bool IsSSCEnabled;
 
-    #region StartOptions
     [Header("StartOptions")]
     [BackgroundColor(90, 40, 110)]
     [Expand(false, false)]
@@ -41,7 +57,14 @@ public class ServerConfig : ModConfig
     [Range(20, 200)]
     [DefaultValue(20)]
     public int StartMana = 20;
-    #endregion
+    
+    [BackgroundColor(90, 40, 110)]
+    [DefaultValue(PlayerDifficultyMode.Softcore)]
+    public PlayerDifficultyMode StartDifficulty = PlayerDifficultyMode.Softcore;
+
+    [BackgroundColor(90, 40, 110)]
+    [DefaultValue(PlayerNameMode.Default)]
+    public PlayerNameMode PlayerStartName = PlayerNameMode.Default;
 
     [Header("ClientSidedMods")]
     [BackgroundColor(30, 100, 40, 220)]
@@ -56,9 +79,4 @@ public class ServerConfig : ModConfig
     [BackgroundColor(210, 30, 30, 220)]
     [Expand(false)]
     public List<ItemDefinition> BannedItems = [];
-
-    [Header("Debug")]
-    [BackgroundColor(200, 20, 30, 180)]
-    [DefaultValue(false)]
-    public bool ShowDebugMessages;
 }

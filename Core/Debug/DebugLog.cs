@@ -50,7 +50,7 @@ public static class Log
 
     private static bool ShouldSend()
     {
-        var config = ModContent.GetInstance<ServerConfig>();
+        var config = ModContent.GetInstance<ClientConfig>();
         return config != null && config.ShowDebugMessages;
     }
 
@@ -61,7 +61,7 @@ public static class Log
             return "Unknown";
 
         // Keep label compact
-        const int MaxFileLabelLen = 21;
+        const int MaxFileLabelLen = 17;
         if (name.Length > MaxFileLabelLen)
             name = name.Substring(0, MaxFileLabelLen - 2) + "..";
 

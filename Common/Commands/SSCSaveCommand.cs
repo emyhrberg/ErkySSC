@@ -27,7 +27,7 @@ internal class SSCSaveCommand : ModCommand
             return;
         }
 
-        ModContent.GetInstance<SaveSystem>().SendPacketToSavePlayerFile();
-        Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCSave.Success"), Color.LightGreen);
+        ModContent.GetInstance<SSCSaveSystem>().SendPacketToSavePlayerFile();
+        Main.NewText(Language.GetTextValue("Mods.ErkySSC.Commands.SSCSave.Success", Main.LocalPlayer.name), Color.LightGreen);
     }
 }
